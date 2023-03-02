@@ -33,6 +33,7 @@ public class RedesController {
 						linha2 = buffer2.readLine();
 					if(linha2.contains("IPv4")){
 						System.out.println(linha);
+						System.out.println(linha2);
 					}
 				}
 				linha = buffer.readLine();
@@ -43,5 +44,26 @@ public class RedesController {
 			e.printStackTrace();
 		}
 		
+	}
+	public void ping() {
+		String process;
+		if(os().contains("Windows")) process = "PING -4 -n 10 www.google.com.br";
+		else process = "PING -4 -c 10 www.google.com.br";
+		try {
+			Process p = Runtime.getRuntime().exec(process);
+			InputStream fluxo = p.getInputStream();
+			InputStreamReader leitor = new InputStreamReader(fluxo);
+			BufferedReader buffer = new BufferedReader(leitor);
+			String linha = buffer.readLine();
+			while(linha != null) {
+				if(linha.contains("nimo")) {
+					String[] separado = linha.split("=");
+					System.out.println("A média do ping é :"+separado[3]);					
+				}
+				linha = buffer.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

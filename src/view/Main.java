@@ -22,7 +22,10 @@ public class Main {
 				rede.ip();
 				break;
 			}
-			//case 2: rede.ping();
+			case 2: {
+				rede.ping();
+				break;
+			}
 			case 9: {
 				JOptionPane.showMessageDialog(null,"*** Fim do Programa ***");
 				break;
